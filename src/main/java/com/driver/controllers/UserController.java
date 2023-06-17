@@ -1,6 +1,6 @@
 package com.driver.controllers;
+import com.driver.model.User;
 import com.driver.services.impl.UserServiceImpl;
-import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<User> updatePassword(@RequestParam Integer userId, @RequestParam String password){
-        User updatedUser = userService.updatePassword(userId,password);
+        User updatedUser=userService.updatePassword(userId, password);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 

@@ -1,29 +1,34 @@
 package com.driver.model;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
-
+@Table(name="reservation")
 public class Reservation {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-
     private int numberOfHours;
 
     @ManyToOne
     @JoinColumn
     private User user;
-
-    @OneToMany
+    @ManyToOne
     @JoinColumn
     private Spot spot;
-
-    @OneToOne(mappedBy = "reservation",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy ="reservation",cascade =CascadeType.ALL)
     private Payment payment;
+
+    public Reservation() {
+    }
+
+    public Reservation(int id, int numberOfHours, User user, Spot spot, Payment payment) {
+        this.id = id;
+        this.numberOfHours = numberOfHours;
+        this.user = user;
+        this.spot = spot;
+        this.payment = payment;
+    }
 
     public int getId() {
         return id;
